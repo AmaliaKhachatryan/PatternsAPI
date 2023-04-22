@@ -13,7 +13,7 @@ import static generatorClient.LoginClient.loginClint;
 class RegistrationClientTest {
     @BeforeEach
     public void setUp() {
-        Configuration.holdBrowserOpen = true;
+       // Configuration.holdBrowserOpen = true;
         open("http://localhost:9999");
     }
 
