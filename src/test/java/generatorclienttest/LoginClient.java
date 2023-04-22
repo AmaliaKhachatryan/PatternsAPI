@@ -1,4 +1,6 @@
-package generatorClientTest;
+package generatorclienttest;
+
+import generatorclient.GeneratorClient;
 
 import static com.codeborne.selenide.Selenide.$;
 

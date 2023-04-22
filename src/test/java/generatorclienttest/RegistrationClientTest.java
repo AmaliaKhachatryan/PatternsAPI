@@ -1,6 +1,7 @@
-package generatorClientTest;
+package generatorclienttest;
 
 import com.codeborne.selenide.Condition;
+import generatorclient.Status;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -8,8 +9,8 @@ import org.junit.jupiter.api.Test;
 import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
-import static generatorClientTest.GeneratorClient.*;
-import static generatorClientTest.LoginClient.loginClint;
+import static generatorclient.GeneratorClient.*;
+import static generatorclienttest.LoginClient.loginClint;
 
 class RegistrationClientTest {
     @BeforeEach
