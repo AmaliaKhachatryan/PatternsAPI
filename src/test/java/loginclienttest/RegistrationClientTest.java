@@ -1,4 +1,4 @@
-package generatorclienttest;
+package loginclienttest;
 
 import com.codeborne.selenide.Condition;
 import generatorclient.Status;
@@ -10,9 +10,9 @@ import java.time.Duration;
 
 import static com.codeborne.selenide.Selenide.*;
 import static generatorclient.GeneratorClient.*;
-import static generatorclienttest.LoginClient.loginClint;
+import static loginclienttest.LoginClient.loginClint;
 
-class RegistrationClientTest {
+public class RegistrationClientTest {
     @BeforeEach
     public void setUp() {
        // Configuration.holdBrowserOpen = true;
@@ -24,7 +24,7 @@ class RegistrationClientTest {
     void shouldSuccessfulLoginIfRegisteredActiveUser() {
         var client = registeredClient("en", Status.active);
         loginClint(client);
-        $("h2[class='heading heading_size_l heading_theme_alfa-on-white']")
+        $("h2[class='heading heading_size_l heading_theme_alfa-on-white']").shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .shouldHave(Condition.exactText("  Личный кабинет"));
         // TODO: добавить логику теста, в рамках которого будет выполнена попытка входа в личный кабинет с учётными
         //  данными зарегистрированного активного пользователя, для заполнения полей формы используйте
@@ -36,7 +36,7 @@ class RegistrationClientTest {
     void shouldGetErrorIfNotRegisteredUser() {
         var client = generatedClientActive("en", Status.active);
         loginClint(client);
-        $("div[class='notification__content']")
+        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
         // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет
         //  незарегистрированного пользователя, для заполнения полей формы используйте пользователя notRegisteredUser
@@ -47,7 +47,7 @@ class RegistrationClientTest {
     void shouldGetErrorIfBlockedUser() {
         var client = registeredClient("en", Status.blocked);
         loginClint(client);
-        $("div[class='notification__content']")
+        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(10))
                 .shouldHave(Condition.exactText("Ошибка! " + "Пользователь заблокирован"));
         // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет,
         //  заблокированного пользователя, для заполнения полей формы используйте пользователя blockedUser

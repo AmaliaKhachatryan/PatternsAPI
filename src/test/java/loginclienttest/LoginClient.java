@@ -1,4 +1,4 @@
-package generatorclienttest;
+package loginclienttest;
 
 import generatorclient.GeneratorClient;
 
