@@ -17,13 +17,6 @@ public class GeneratorClient {
     String login;
     String password;
     Status status;
-    public static GeneratorClient registeredClient(String locale, Status status) {
-        // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
-        // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
-        var client = new GeneratorClient(generateLogin(locale), generatePassword(locale), status);
-        getRegisteredClient(client);
-        return client;
-    }
 
     public static GeneratorClient generatedClientActive(String locale, Status status) {
         return new GeneratorClient(generateLogin(locale), generatePassword(locale), status);
@@ -48,7 +41,7 @@ public class GeneratorClient {
                 .log(LogDetail.ALL)
                 .build();
 
-        static void getRegisteredClient(GeneratorClient client) {
+      static   void getRegisteredClient(GeneratorClient client) {
             given() // "дано"
                     .spec(requestSpec) // указываем, какую спецификацию используем
                     .body(client) // передаём в теле объект, который будет преобразован в JSON
@@ -57,5 +50,12 @@ public class GeneratorClient {
                     .then() // "тогда ожидаем"
                     .statusCode(200); // код 200 OK
         }
+    }
+    public static GeneratorClient registeredClient(String locale,Status status) {
+        // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
+        // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
+        var client= new GeneratorClient(generateLogin(locale), generatePassword(locale), status);
+        getRegisteredClient(client);
+        return client;
     }
 }
