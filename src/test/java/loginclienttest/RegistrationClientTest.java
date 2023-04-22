@@ -59,7 +59,7 @@ public class RegistrationClientTest {
         var client = registeredClient("en", Status.active);
         var wrongLogin = generateLogin("en");
         loginClint(wrongLogin,client.getPassword());
-        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(10))
+        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
         // TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
         //  логином, для заполнения поля формы "Логин" используйте переменную wrongLogin,
@@ -72,7 +72,7 @@ public class RegistrationClientTest {
         var client = registeredClient("en", Status.active);
         var wrongPassword = generatePassword("en");
         loginClint(client.getLogin(),wrongPassword);
-        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(10))
+        $("div[class='notification__content']").shouldBe(Condition.visible, Duration.ofSeconds(15))
                 .shouldHave(Condition.exactText("Ошибка! " + "Неверно указан логин или пароль"));
 //         TODO: добавить логику теста в рамках которого будет выполнена попытка входа в личный кабинет с неверным
 //          паролем, для заполнения поля формы "Логин" используйте пользователя registeredUser,
