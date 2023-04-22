@@ -1,4 +1,4 @@
-package generatorClient;
+package generatorClientTest;
 
 public enum Status {
     active,

@@ -1,4 +1,4 @@
-package generatorClient;
+package generatorClientTest;
 
 import com.github.javafaker.Faker;
 import io.restassured.builder.RequestSpecBuilder;
@@ -9,7 +9,7 @@ import lombok.Value;
 
 import java.util.Locale;
 
-import static generatorClient.GeneratorClient.RegistrationClient.getRegisteredClient;
+import static generatorClientTest.GeneratorClient.RegistrationClient.getRegisteredClient;
 import static io.restassured.RestAssured.given;
 
 @Value

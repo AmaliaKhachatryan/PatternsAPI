@@ -1,8 +1,4 @@
-package generatorClient;
-
-import com.codeborne.selenide.Condition;
-
-import java.time.Duration;
+package generatorClientTest;
 
 import static com.codeborne.selenide.Selenide.$;
 
