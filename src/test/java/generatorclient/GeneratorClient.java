@@ -9,19 +9,14 @@ import lombok.Value;
 
 import java.util.Locale;
 
-import static generatorclient.GeneratorClient.RegistrationClient.getRegisteredClient;
+import static generatorclient.GeneratorClient.RegistrationRequest.getRegisteredClient;
 import static io.restassured.RestAssured.given;
 
 @Value
 public class GeneratorClient {
-    String login;
-    String password;
-    Status status;
+private GeneratorClient() {
 
-    public static GeneratorClient generatedClientActive(String locale, Status status) {
-        return new GeneratorClient(generateLogin(locale), generatePassword(locale), status);
-    }
-
+}
     public static String generateLogin(String locale) {
         var faker = new Faker(new Locale(locale));
         return faker.name().lastName() + " " + faker.name().firstName();
@@ -31,8 +26,11 @@ public class GeneratorClient {
         var faker = new Faker(new Locale(locale));
         return faker.internet().password();
     }
+public static class RegistrationRequest{
 
-    public static class RegistrationClient {
+ private  RegistrationRequest(){
+
+ }
         private static RequestSpecification requestSpec = new RequestSpecBuilder()
                 .setBaseUri("http://localhost")
                 .setPort(9999)
@@ -41,7 +39,7 @@ public class GeneratorClient {
                 .log(LogDetail.ALL)
                 .build();
 
-      static   void getRegisteredClient(GeneratorClient client) {
+        static void getRegisteredClient(DataClient client) {
             given() // "дано"
                     .spec(requestSpec) // указываем, какую спецификацию используем
                     .body(client) // передаём в теле объект, который будет преобразован в JSON
@@ -51,11 +49,28 @@ public class GeneratorClient {
                     .statusCode(200); // код 200 OK
         }
     }
-    public static GeneratorClient registeredClient(String locale,Status status) {
+public static class RegistrationClient {
+    private RegistrationClient() {
+
+    }
+    public static DataClient generatedClientActive(String locale) {
+        return new DataClient(generateLogin(locale), generatePassword(locale), Status.active);
+    }
+
+    public static DataClient registeredClient(String locale, Status status) {
         // TODO: объявить переменную registeredUser и присвоить ей значение возвращённое getUser(status).
         // Послать запрос на регистрацию пользователя с помощью вызова sendRequest(registeredUser)
-        var client= new GeneratorClient(generateLogin(locale), generatePassword(locale), status);
+        //  var client= new DataClient(generateLogin(locale), generatePassword(locale), status);
+        var client = new DataClient(generateLogin(locale), generatePassword(locale), status);
         getRegisteredClient(client);
         return client;
     }
+}
+    @Value
+    public static class DataClient {
+        String login;
+        String password;
+        Status status;
+    }
+
 }
